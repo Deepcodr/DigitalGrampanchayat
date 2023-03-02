@@ -39,12 +39,14 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     $userid= $_SESSION["userid"];
     $status=0;
     $certificateid=null;
-    $applicationname="businessnocregistrationapplication";
+    $applicationname="constpermitregistrationapplication";
 
     if(move_uploaded_file($_FILES["houserent"]["tmp_name"],$uploadfile1) && move_uploaded_file($_FILES["712"]["tmp_name"],$uploadfile2) && move_uploaded_file($_FILES["map"]["tmp_name"],$uploadfile3) && move_uploaded_file($_FILES["plan"]["tmp_name"],$uploadfile4) && move_uploaded_file($_FILES["consent"]["tmp_name"],$uploadfile5) && move_uploaded_file($_FILES["observation"]["tmp_name"],$uploadfile6))
     {
-        $sql=$conn->prepare('INSERT INTO applications(applicationname,userid,status) values(?,?,?)');
-        $sql->bind_param("sii",$applicationname,$userid,$status);
+        $dbname="cnstpermit";
+
+        $sql=$conn->prepare('INSERT INTO applications(dbname,applicationname,userid,status) values(?,?,?,?)');
+        $sql->bind_param("ssii",$dbname,$applicationname,$userid,$status);
         $sql->execute();
 
         if($sql->affected_rows>0)

@@ -17,8 +17,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     $status=0;
     $applicationname=$type."registrationapplication";
 
-    $sql=$conn->prepare('INSERT INTO applications(applicationname,userid,status) values(?,?,?)');
-    $sql->bind_param("sii",$applicationname,$userid,$status);
+    $dbname="birthcert";
+
+    $sql=$conn->prepare('INSERT INTO applications(dbname,applicationname,userid,status) values(?,?,?,?)');
+    $sql->bind_param("ssii",$dbname,$applicationname,$userid,$status);
     $sql->execute();
 
     if($conn->affected_rows>0)

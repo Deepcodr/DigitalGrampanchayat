@@ -5,39 +5,77 @@ if($_SERVER["REQUEST_METHOD"]=="GET")
 {
     if($_SESSION["userloggedin"]==1)
     {
-        $userid=$_SESSION["userid"];
-        $sql=$conn->prepare('SELECT * FROM applications where userid=?');
-        $sql->bind_param("i",$userid);
-
-        $sql->execute();
-
-        $result=$sql->get_result();
-        $response="";
-        $status="";
-        while($row=mysqli_fetch_assoc($result))
+        if($_SESSION["adminstatus"]!=1)
         {
-            if($row["status"]==0)
+            $userid=$_SESSION["userid"];
+            $sql=$conn->prepare('SELECT * FROM applications where userid=?');
+            $sql->bind_param("i",$userid);
+
+            $sql->execute();
+
+            $result=$sql->get_result();
+            $response="";
+            $status="";
+            while($row=mysqli_fetch_assoc($result))
             {
-                $status="Under Scrutiny";
+                if($row["status"]==0)
+                {
+                    $status="Under Scrutiny";
+                }
+                elseif($row["status"]==1)
+                {
+                    $status="Under Review";
+                }
+                elseif($row["status"]==2)
+                {
+                    $status="Approved";
+                }
+                $response=$response.'<div class="card m-2" style="width: 18rem;height: fit-content;">
+                <div class="card-body">
+                <h5 class="card-title">Application ID : '.$row["applicationid"].'</h5>
+                <h6 class="card-subtitle mb-2 text-muted">'.$row["applicationname"].'</h6>
+                <br><h6 class="card-subtitle mb-2 text-muted"><strong>Application Status</strong><br>'.$status.'</h6>
+                <p class="card-text">application submitted on '.$row["applicationdate"].'</p>
+                </div>
+            </div>';
             }
-            elseif($row["status"]==1)
-            {
-                $status="Under Review";
-            }
-            elseif($row["status"]==2)
-            {
-                $status="Approved";
-            }
-            $response=$response.'<div class="card m-2" style="width: 18rem;height: fit-content;">
-            <div class="card-body">
-              <h5 class="card-title">Application ID : '.$row["applicationid"].'</h5>
-              <h6 class="card-subtitle mb-2 text-muted">'.$row["applicationname"].'</h6>
-              <br><h6 class="card-subtitle mb-2 text-muted"><strong>Application Status</strong><br>'.$status.'</h6>
-              <p class="card-text">application submitted on '.$row["applicationdate"].'</p>
-            </div>
-          </div>';
+            echo $response;
         }
-        echo $response;
+        else
+        {
+            $sql=$conn->prepare('SELECT * FROM applications');
+
+            $sql->execute();
+
+            $result=$sql->get_result();
+            $response="";
+            $status="";
+            while($row=mysqli_fetch_assoc($result))
+            {
+                if($row["status"]==0)
+                {
+                    $status="Under Scrutiny";
+                }
+                elseif($row["status"]==1)
+                {
+                    $status="Under Review";
+                }
+                elseif($row["status"]==2)
+                {
+                    $status="Approved";
+                }
+                $response=$response.'<div class="card m-2" style="width: 18rem;height: fit-content;">
+                <div class="card-body">
+                <h5 class="card-title">Application ID : '.$row["applicationid"].'</h5>
+                <h6 class="card-subtitle mb-2 text-muted">'.$row["applicationname"].'</h6>
+                <br><h6 class="card-subtitle mb-2 text-muted"><strong>Application Status</strong><br>'.$status.'</h6>
+                <p class="card-text">application submitted on '.$row["applicationdate"].'</p>
+                <a href="./applicationdata.php?applicationid='.$row["applicationid"].'">View Application</a>
+                </div>
+            </div>';
+            }
+            echo $response;
+        }
     }
     else
     {

@@ -31,8 +31,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
 
     if(move_uploaded_file($_FILES["aadhaar"]["tmp_name"],$uploadfile1) && move_uploaded_file($_FILES["daadhaar"]["tmp_name"],$uploadfile2))
     {
-        $sql=$conn->prepare('INSERT INTO applications(applicationname,userid,status) values(?,?,?)');
-        $sql->bind_param("sii",$applicationname,$userid,$status);
+        $dbname="deathbirthreg";
+
+        $sql=$conn->prepare('INSERT INTO applications(dbname,applicationname,userid,status) values(?,?,?,?)');
+        $sql->bind_param("ssii",$dbname,$applicationname,$userid,$status);
         $sql->execute();
 
         if($conn->affected_rows>0)

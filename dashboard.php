@@ -9,6 +9,7 @@ if($_SESSION["userloggedin"]==1)
   if($_SESSION["adminstatus"]!=0)
   {
     echo "You Dont Have Access to this page";
+    die();
   }
 }
 else

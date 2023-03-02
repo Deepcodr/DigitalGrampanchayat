@@ -6,7 +6,7 @@ session_start();
 
 if($_SESSION["userloggedin"]==1)
 {
-  if($_SESSION["adminstatus"]!=0)
+  if($_SESSION["adminstatus"]!=1)
   {
     echo "You Dont Have Access to this page";
     die();
@@ -77,24 +77,27 @@ else
       <div class="list-group list-group-flush mx-3 mt-4">
         <a
           href="./dashboard.php"
-          class="list-group-item list-group-item-action py-2 ripple"
+          class="list-group-item list-group-item-action py-2 ripple active"
           aria-current="true" 
         >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>My dashboard</span>
         </a>
-        <a href="./applications.php" class="list-group-item list-group-item-action py-2 ripple active">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Applications</span>
+        <a href="./adminapplications.php" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>Application Requests</span>
         </a>
-        <a href="./queries.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-lock fa-fw me-3"></i><span>Queries</span></a
+        <a href="./adminqueries.php" class="list-group-item list-group-item-action py-2 ripple"
+          ><i class="fas fa-lock fa-fw me-3"></i><span>Create Queries</span></a
         >
-        <a href="./certificates.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>My Certificates</span></a
+        <a href="./admincertificates.php" class="list-group-item list-group-item-action py-2 ripple"
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Generate Certificate</span></a
+        >
+        <a href="./adminapprovals.php" class="list-group-item list-group-item-action py-2 ripple"
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Approvals</span></a
         >
       </div>
     </div>
   </nav>
-  <div id="applications-content" class="container d-flex flex-wrap">
+  <div id="applications-content" class="container d-flex flex-row flex-wrap">
   </div>
 </div>
 </body>

@@ -29,8 +29,10 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
 
     if(move_uploaded_file($_FILES["houserent"]["tmp_name"],$uploadfile1) && move_uploaded_file($_FILES["712"]["tmp_name"],$uploadfile2) && move_uploaded_file($_FILES["map"]["tmp_name"],$uploadfile3))
     {
-        $sql=$conn->prepare('INSERT INTO applications(applicationname,userid,status) values(?,?,?)');
-        $sql->bind_param("sii",$applicationname,$userid,$status);
+        $dbname="busnoc";
+
+        $sql=$conn->prepare('INSERT INTO applications(dbname,applicationname,userid,status) values(?,?,?,?)');
+        $sql->bind_param("ssii",$dbname,$applicationname,$userid,$status);
         $sql->execute();
 
         if($sql->affected_rows>0)
