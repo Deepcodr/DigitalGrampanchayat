@@ -103,19 +103,452 @@ else
 
         if($_SERVER["REQUEST_METHOD"]=="GET")
         {
+            $userid=$_SESSION["userid"];
             $applicationid= $_REQUEST["applicationid"];
-            echo $_REQUEST["applicationid"];
             $sql=$conn->prepare('SELECT * FROM applications WHERE applicationid=?');
             $sql->bind_param("i",intval($applicationid));
 
             $sql->execute();
+            $result=$sql->get_result();
 
-                $result=$sql->get_result();
+            if($result->num_rows>0){
+              $row=mysqli_fetch_assoc($result);
+              $dbname=$row["dbname"];
+              $fetchdata=$conn->prepare('SELECT * FROM applications join '.$row["dbname"].' on applications.applicationid='.$dbname.'.applicationid WHERE '.$dbname.'.applicationid=?');
+                  
+              $fetchdata->bind_param("i",$applicationid);
+              $fetchdata->execute();
 
-                while($row=mysqli_fetch_assoc($result))
+              $applicationdata=$fetchdata->get_result();
+              if($applicationdata->num_rows>0)
+              {
+                $fetchfiles=$conn->prepare('SELECT * from applications join files on applications.applicationid=files.applicationid where applications.applicationid=?');
+                $fetchfiles->bind_param("i",$applicationid);
+
+                $fetchfiles->execute();
+
+                $filesresult=$fetchfiles->get_result();
+                if($filesresult->num_rows>0)
                 {
-                    echo $row["applicationname"];
+                  $i=1;
+                  $files="";
+                  while($row=mysqli_fetch_assoc($filesresult))
+                  {
+                    $fileurl=ltrim($row["fileurl"],$row["fileurl"][0]);
+                    $fileurl=ltrim($fileurl,$fileurl[0]);
+                    $files=$files.'<button type="button" class="btn btn-outline-info m-2"><a href='.$fileurl.$row["filename"].'>View Document '.$i.'</a></button>';
+                    $i++;
+                  }
+
+                  $row=mysqli_fetch_assoc($applicationdata);
+                  $status="";
+                  if($row["status"]==0)
+                  {
+                      $status="Under Scrutiny";
+                  }
+                  elseif($row["status"]==1)
+                  {
+                      $status="Under Review";
+                  }
+                  elseif($row["status"]==2)
+                  {
+                      $status="Approved";
+                  }
+
+                  if($dbname=="watertanker")
+                  {
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Social Amount To Be Paid : '.$row["socialamount"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Application Submitted On : '.$row["applicationdate"].'</p>
+                      <hr class="my-4">'
+                      .$files.'<hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="deathbirthreg"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Application For : '.$row["type"].'</p>
+                      <hr class="my-4">
+                      <h5 class="text-primary">Death Person Details</h5>
+                      <p class="lead">Person Name : '.$row["personname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Date Of Event : '.$row["dateofevent"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Age : '.$row["Age"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Father/Spouse Name : '.$row["fname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Mothers Name : '.$row["mname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Reason Of Death : '.$row["reasonofdeath"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Permanent Address : '.$row["permanantadd"].'</p>
+                      <hr class="my-4">'.$files.'
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="birthcert"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Application For : '.$row["type"].'</p>
+                      <hr class="my-4">
+                      <h5 class="text-primary">Death Person Details</h5>
+                      <p class="lead">Person Name : '.$row["personname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Date Of Event : '.$row["dateofevent"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Father/Spouse Name : '.$row["fname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Mothers Name : '.$row["mname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Permanent Address : '.$row["personperadd"].'</p>
+                      <hr class="my-4">'.$files.'
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="busnoc"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Name To Be Printed On Certificate : '.$row["certificatename"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Group Number : '.$row["gno"].'</p>
+                      <hr class="my-4">
+                      '.$files.'
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="cnstpermit"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Group Number : '.$row["gno"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Length Of Place : '.$row["lengthofp"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Width Of Place : '.$row["widthofp"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Construction Type : '.$row["cnsttype"].'</p>
+                      <hr class="my-4">'.$files.'
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="elecnoc"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Group Number : '.$row["gno"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Type Of Electricity : '.$row["typeofelec"].'</p>
+                      <hr class="my-4">'.$files.'
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="resident"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Application Type : '.$row["type"].'</p>
+                      <hr class="my-4">'.$files.'
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }
                 }
+                else
+                {
+                  $row=mysqli_fetch_assoc($applicationdata);
+                  $status="";
+                  if($row["status"]==0)
+                  {
+                      $status="Under Scrutiny";
+                  }
+                  elseif($row["status"]==1)
+                  {
+                      $status="Under Review";
+                  }
+                  elseif($row["status"]==2)
+                  {
+                      $status="Approved";
+                  }
+
+                  if($dbname=="watertanker")
+                  {
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Social Amount To Be Paid : '.$row["socialamount"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Application Submitted On : '.$row["applicationdate"].'</p>
+                      <hr class="my-4">
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="deathbirthreg"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Application For : '.$row["type"].'</p>
+                      <hr class="my-4">
+                      <h5 class="text-primary">Death Person Details</h5>
+                      <p class="lead">Person Name : '.$row["personname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Date Of Event : '.$row["dateofevent"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Age : '.$row["Age"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Father/Spouse Name : '.$row["fname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Mothers Name : '.$row["mname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Reason Of Death : '.$row["reasonofdeath"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Permanent Address : '.$row["permanantadd"].'</p>
+                      <hr class="my-4">
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="birthcert"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Application For : '.$row["type"].'</p>
+                      <hr class="my-4">
+                      <h5 class="text-primary">Death Person Details</h5>
+                      <p class="lead">Person Name : '.$row["personname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Date Of Event : '.$row["dateofevent"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Father/Spouse Name : '.$row["fname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Mothers Name : '.$row["mname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Person Permanent Address : '.$row["personperadd"].'</p>
+                      <hr class="my-4">
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="busnoc"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Name To Be Printed On Certificate : '.$row["certificatename"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Group Number : '.$row["gno"].'</p>
+                      <hr class="my-4">
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="cnstpermit"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Group Number : '.$row["gno"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Length Of Place : '.$row["lengthofp"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Width Of Place : '.$row["widthofp"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Construction Type : '.$row["cnsttype"].'</p>
+                      <hr class="my-4">
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="elecnoc"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Group Number : '.$row["gno"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Type Of Electricity : '.$row["typeofelec"].'</p>
+                      <hr class="my-4">
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }elseif($dbname=="resident"){
+                    echo '<div class="jumbotron m-2">
+                    <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
+                    <h4>Application Name :  '.$row["applicationname"].'</h4>
+                      <h4 class="text-success">Application Status :  '.$status.'</h4>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Name : '.$row["applicantname"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Email : '.$row["applicantemail"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Mobile : '.$row["applicantmobile"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Applicant Address : '.$row["applicantaddress"].'</p>
+                      <hr class="my-4">
+                      <p class="lead">Application Type : '.$row["type"].'</p>
+                      <hr class="my-4">
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                  }
+                }
+              }
+              else
+              {
+                echo '<div class="jumbotron m-2">
+                  <h1 class="display-4"> No Data Found </h1>
+                </div>';
+              }
+            }
+            else
+            {
+              echo '<div class="jumbotron m-2">
+                  <h1 class="display-4"> No Data Found </h1>
+                </div>';
+            }
         }
         else {
             echo "";
