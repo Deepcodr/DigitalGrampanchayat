@@ -23,8 +23,18 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
                 $_SESSION["userid"]=$row['userid'];
                 $_SESSION["userloggedin"]=true;
                 $_SESSION["loginstatus"]=1;
-                header("Location: http://localhost/DigitalGrampanchayat");
-                exit();
+                if($usertype==1)
+                {
+                    $_SESSION["adminstatus"]=1;
+                    header("Location: http://localhost/DigitalGrampanchayat/admindashboard.php");
+                    exit();
+                }
+                else
+                {
+                    $_SESSION["adminstatus"]=0;
+                    header("Location: http://localhost/DigitalGrampanchayat/dashboard.php");
+                    exit();
+                }
             }
             else
             {
