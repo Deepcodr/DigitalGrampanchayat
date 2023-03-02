@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Uttar Pradesh National Health Mission</title>
+    <title>Digital Grampanchayat</title>
 
     <link rel="stylesheet" type="text/css" href="./Uttar Pradesh National Health Mission_files/bootstrap.min.css">
     <link id="pagestyle" rel="stylesheet" type="text/css"
@@ -64,19 +64,19 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="./Uttar Pradesh National Health Mission_files/3.jpg"
-                        alt="Uttar Pradesh National Health Mission" width="100%">
+                        alt="Digital Grampanchayat" width="100%">
                 </div>
                 <div class="carousel-item">
                     <img src="./Uttar Pradesh National Health Mission_files/2.jpg"
-                        alt="Uttar Pradesh National Health Mission" width="100%">
+                        alt="Digital Grampanchayat" width="100%">
                 </div>
                 <div class="carousel-item">
                     <img src="./Uttar Pradesh National Health Mission_files/1.jpg"
-                        alt="Uttar Pradesh National Health Mission" width="100%">
+                        alt="Digital Grampanchayat" width="100%">
                 </div>
                 <div class="carousel-item">
                     <img src="./Uttar Pradesh National Health Mission_files/4.jpg"
-                        alt="Uttar Pradesh National Health Mission" width="100%">
+                        alt="Digital Grampanchayat" width="100%">
                 </div>
             </div>
 
