@@ -62,13 +62,16 @@
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>My dashboard</span>
         </a>
         <a href="./applications.php" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Applications</span>
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>Application Requests</span>
         </a>
         <a href="./queries.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-lock fa-fw me-3"></i><span>Queries</span></a
+          ><i class="fas fa-lock fa-fw me-3"></i><span>Create Queries</span></a
         >
         <a href="./certificates.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>My Certificates</span></a
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Generate Certificate</span></a
+        >
+        <a href="./certificates.php" class="list-group-item list-group-item-action py-2 ripple"
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Approvals</span></a
         >
       </div>
     </div>
