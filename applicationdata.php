@@ -55,6 +55,7 @@ else
     </script>
     <script src="./js/login.js"></script>
     <script src="https://kit.fontawesome.com/f5126202d4.js" crossorigin="anonymous"></script>
+    <script src="./js/login.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/dashboard.css">
 </head>
 <body style="font-size: 100%;">
@@ -99,6 +100,52 @@ else
   </nav>
   <div id="applicationdata-content" class="container">
     <?php
+        if(isset($_SESSION["approval"]))
+        {
+          if($_SESSION["approval"]==1)
+          {
+            echo '<div id="successtoast" class="alert alert-success container mt-4" role="alert">
+            <h4 class="alert-heading">Approval Successful!</h4>
+            </div>
+            <script>
+                setTimeout(hidetoast,5000);
+            </script>';
+          }
+          elseif($_SESSION["approval"]==0)
+          {
+            echo '<div id="dangertoast" class="alert alert-danger container mt-4" role="alert">
+            <h4 class="alert-heading">Approval Unsuccessful . Please Try Again!</h4>
+            </div>
+            <script>
+                setTimeout(hidetoast,5000);
+            </script>';
+          }
+          $_SESSION["approval"]=-1;
+        }
+
+        if(isset($_SESSION["querygeneration"]))
+        {
+          if($_SESSION["querygeneration"]==1)
+          {
+            echo '<div id="successtoast" class="alert alert-success container mt-4" role="alert">
+            <h4 class="alert-heading">Query Created Successfully!</h4>
+            </div>
+            <script>
+                setTimeout(hidetoast,5000);
+            </script>';
+          }
+          elseif($_SESSION["querygeneration"]==0)
+          {
+            echo '<div id="dangertoast" class="alert alert-danger container mt-4" role="alert">
+            <h4 class="alert-heading">Query Not Created . Please Try Again!</h4>
+            </div>
+            <script>
+                setTimeout(hidetoast,5000);
+            </script>';
+          }
+          $_SESSION["querygeneration"]=-1;
+        }
+
         include('./includes/dbconnection.php');
 
         if($_SERVER["REQUEST_METHOD"]=="GET")
@@ -174,10 +221,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Application Submitted On : '.$row["applicationdate"].'</p>
                       <hr class="my-4">'
-                      .$files.'<hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      .$files.'<hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="deathbirthreg"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -209,10 +256,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Person Permanent Address : '.$row["permanantadd"].'</p>
                       <hr class="my-4">'.$files.'
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="birthcert"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -240,10 +287,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Person Permanent Address : '.$row["personperadd"].'</p>
                       <hr class="my-4">'.$files.'
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="busnoc"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -263,10 +310,10 @@ else
                       <p class="lead">Group Number : '.$row["gno"].'</p>
                       <hr class="my-4">
                       '.$files.'
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="cnstpermit"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -289,10 +336,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Construction Type : '.$row["cnsttype"].'</p>
                       <hr class="my-4">'.$files.'
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="elecnoc"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -311,10 +358,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Type Of Electricity : '.$row["typeofelec"].'</p>
                       <hr class="my-4">'.$files.'
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="resident"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -331,10 +378,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Application Type : '.$row["type"].'</p>
                       <hr class="my-4">'.$files.'
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }
                 }
                 else
@@ -373,10 +420,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Application Submitted On : '.$row["applicationdate"].'</p>
                       <hr class="my-4">
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="deathbirthreg"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -408,10 +455,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Person Permanent Address : '.$row["permanantadd"].'</p>
                       <hr class="my-4">
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="birthcert"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -439,10 +486,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Person Permanent Address : '.$row["personperadd"].'</p>
                       <hr class="my-4">
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="busnoc"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -461,10 +508,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Group Number : '.$row["gno"].'</p>
                       <hr class="my-4">
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="cnstpermit"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -487,10 +534,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Construction Type : '.$row["cnsttype"].'</p>
                       <hr class="my-4">
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="elecnoc"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -509,10 +556,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Type Of Electricity : '.$row["typeofelec"].'</p>
                       <hr class="my-4">
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }elseif($dbname=="resident"){
                     echo '<div class="jumbotron m-2">
                     <h1 class="display-4">Application ID :  '.$applicationid.'</h1>
@@ -529,10 +576,10 @@ else
                       <hr class="my-4">
                       <p class="lead">Application Type : '.$row["type"].'</p>
                       <hr class="my-4">
-                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="#" role="button">Approve</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Certificate</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Reject</a>
-                      <a class="btn btn-primary btn-lg m-2" href="#" role="button">Generate Query</a></div>';
+                      <hr class="my-4"><a class="btn btn-primary btn-lg m-2" href="./utilityscripts/approve.php?applicationid='.$applicationid.'" role="button">Approve</a>
+                      <a class="btn btn-primary btn-lg m-2" href="/generatecertificate.php?applicationid='.$applicationid.'" role="button">Generate Certificate</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./utilityscripts/reject.php?applicationid='.$applicationid.'" role="button">Reject</a>
+                      <a class="btn btn-primary btn-lg m-2" href="./generatequery.php?applicationid='.$applicationid.'" role="button">Generate Query</a></div>';
                   }
                 }
               }

@@ -94,8 +94,9 @@ else
       </div>
     </div>
   </nav>
-  <div id="applications-content" class="container d-flex flex-row">
+  <div id="queries-content" class="container d-flex flex-row">
   </div>
 </div>
 </body>
+<script src="./js/queries.js"></script>
 </html>

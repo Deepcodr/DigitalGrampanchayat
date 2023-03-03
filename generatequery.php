@@ -96,34 +96,24 @@ else
         >
       </div>
     </div>
-  </nav>
-    <?php
-      if(isset($_SESSION["rejection"]))
-        {
-          if($_SESSION["rejection"]==1)
-          {
-            echo '<div id="successtoast" class="alert alert-success container mt-4" role="alert">
-            <h4 class="alert-heading">Rejection Successful!</h4>
-            </div>
-            <script>
-                setTimeout(hidetoast,5000);
-            </script>';
-          }
-          elseif($_SESSION["rejection"]==0)
-          {
-            echo '<div id="dangertoast" class="alert alert-danger container mt-4" role="alert">
-            <h4 class="alert-heading">Rejection Unsuccessful . Please Try Again!</h4>
-            </div>
-            <script>
-                setTimeout(hidetoast,5000);
-            </script>';
-          }
-          $_SESSION["rejection"]=-1;
-        }
-    ?>
+    </nav>
   <div id="applications-content" class="container d-flex flex-row flex-wrap">
-  </div>
+    <form class="p-2 m-2" action="./utilityscripts/createquery.php" method="POST">
+    <div class="mb-3">
+        <label for="applicationidfield" class="form-label">ApplicationID</label>
+        <input type="number" class="form-control" id="applicationidfield" value="<?php echo $_REQUEST["applicationid"] ?>" name="applicationid" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="Query" class="form-label">Query Name</label>
+        <input type="text" class="form-control" id="Query" name="queryname">
+    </div>
+    <div class="mb-3">
+        <label for="Querycontent" class="form-label">Query Content</label>
+        <input type="text" class="form-control" id="Querycontent" name="querycontent">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 </div>
 </body>
-<script src="./js/applications.js"></script>
 </html>
