@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET")
         if($_SESSION["adminstatus"]!=1)
         {
             $userid=$_SESSION["userid"];
-            $sql=$conn->prepare('SELECT * FROM queries where userid=? and status=0');
+            $sql=$conn->prepare("SELECT * FROM queries join applications on queries.applicationid=applications.applicationid WHERE queries.status=0 and userid=?");
             $sql->bind_param("i",$userid);
 
             $sql->execute();

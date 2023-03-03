@@ -96,24 +96,10 @@ else
         >
       </div>
     </div>
-    </nav>
-  <div id="applications-content" class="container d-flex flex-row flex-wrap">
-    <form class="p-2 m-2" action="./utilityscripts/createcertificate.php" method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="applicationidfield" class="form-label">ApplicationID</label>
-            <input type="number" class="form-control" id="applicationidfield" value="<?php echo $_REQUEST["applicationid"] ?>" name="applicationid" readonly>
-        </div>
-        <div class="mb-3">
-            <label for="certificatename" class="form-label">Certificate Name</label>
-            <input type="text" class="form-control" id="certificatename"  name="certname">
-        </div>
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Upload Certificate</label>
-            <input class="form-control" type="file" id="formFile" name="certificate">
-        </div>
-        <button type="submit" class="btn btn-primary">Generate</button>
-    </form>
-</div>
+  </nav>
+  <div id="certificates-content" class="container d-flex flex-row">
+  </div>
 </div>
 </body>
+<script src="./js/certificates.js"></script>
 </html>
