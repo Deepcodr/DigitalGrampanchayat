@@ -76,20 +76,20 @@ else
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a
-          href="./dashboard.php"
-          class="list-group-item list-group-item-action py-2 ripple active"
+          href="./admindashboard.php"
+          class="list-group-item list-group-item-action py-2 ripple"
           aria-current="true" 
         >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>My dashboard</span>
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Admin dashboard</span>
         </a>
         <a href="./adminapplications.php" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>Application Requests</span>
         </a>
-        <a href="./adminqueries.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-lock fa-fw me-3"></i><span>Create Queries</span></a
+        <a href="./adminqueries.php" class="list-group-item list-group-item-action py-2 ripple active"
+          ><i class="fas fa-lock fa-fw me-3"></i><span>View Queries</span></a
         >
         <a href="./admincertificates.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Generate Certificate</span></a
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>View Certificates</span></a
         >
         <a href="./adminapprovals.php" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-chart-line fa-fw me-3"></i><span>Approvals</span></a

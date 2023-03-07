@@ -26,16 +26,22 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         $stmt->execute();
         if($conn->affected_rows>0)
         {
-            echo "application successful";
+            $_SESSION["applicationsapply"]=1;
+                    header('Location: http://localhost/DigitalGrampanchayat/applications.php');
+                    exit();
         }
         else
         {
-            echo "Failed to create application";
+            $_SESSION["applicationsapply"]=0;
+            header('Location: http://localhost/DigitalGrampanchayat/applications.php');
+            exit();
         }
     }
     else
     {
-        echo "Something Went Wrong";
+        $_SESSION["applicationsapply"]=0;
+                    header('Location: http://localhost/DigitalGrampanchayat/applications.php');
+                    exit();
     }
 }
 else

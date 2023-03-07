@@ -32,9 +32,22 @@ if($_SERVER["REQUEST_METHOD"]=="GET")
 
     if($sql->affected_rows>0)
     {
+      $approvesql=$conn->prepare('INSERT INTO approvals(applicationid) VALUES(?)');
+      $approvesql->bind_param("i",$applicationid);
+
+      $approvesql->execute();
+      if($approvesql->affected_rows>0)
+      {
         $_SESSION["approval"]=1;
         header('Location: http://localhost/DigitalGrampanchayat/applicationdata.php?applicationid='.$applicationid);
         exit();
+      }
+      else
+      {
+        $_SESSION["approval"]=0;
+        header('Location: http://localhost/DigitalGrampanchayat/applicationdata.php?applicationid='.$applicationid);
+        exit();
+      }
     }
     else
     {

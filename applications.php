@@ -72,7 +72,7 @@ else
     <i class="fas fa-bars"></i>
 </button>
 <div class="container-fluid d-flex flex-row">
-<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a
@@ -94,6 +94,52 @@ else
       </div>
     </div>
   </nav>
+  <?php
+  if(isset($_SESSION["applicationsapply"]))
+  {
+    if($_SESSION["applicationsapply"]==1)
+    {
+      echo '<div id="successtoast" class="alert alert-success container m-2 mt-4" role="alert">
+      <h4 class="alert-heading">You Have Applied Successfully!</h4>
+      </div>
+      <script>
+          setTimeout(hidetoast,5000);
+      </script>';
+    }
+    elseif($_SESSION["applicationsapply"]==0)
+    {
+      echo '<div id="dangertoast" class="alert alert-danger container m-2 mt-4" role="alert">
+      <h4 class="alert-heading">Application Failed Try Again Later</h4>
+      </div>
+      <script>
+          setTimeout(hidetoast,5000);
+      </script>';
+    }
+    $_SESSION["applicationsapply"]=-1;
+  }
+  if(isset($_SESSION["applicationsedit"]))
+  {
+    if($_SESSION["applicationsedit"]==1)
+    {
+      echo '<div id="successtoast" class="alert alert-success container m-2 mt-4" role="alert">
+      <h4 class="alert-heading">Application Edited Successfully!</h4>
+      </div>
+      <script>
+          setTimeout(hidetoast,5000);
+      </script>';
+    }
+    elseif($_SESSION["applicationsedit"]==0)
+    {
+      echo '<div id="dangertoast" class="alert alert-danger container m-2 mt-4" role="alert">
+      <h4 class="alert-heading">Application Failed to Edit Try Again Later</h4>
+      </div>
+      <script>
+          setTimeout(hidetoast,5000);
+      </script>';
+    }
+    $_SESSION["applicationsedit"]=-1;
+  }
+  ?>
   <div id="applications-content" class="container d-flex flex-wrap">
   </div>
 </div>

@@ -7,7 +7,8 @@ session_start();
 <div class="header">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-12 text-left"><h1><strong>Digital Grampanchayat</strong></h1></div>
+                <a style="text-decoration:none;" href="http://localhost/DigitalGrampanchayat/#"><h1 style="color:black"><strong>Digital Grampanchayat</strong></h1></a>
+                
             </div>
         </div>
     </div>

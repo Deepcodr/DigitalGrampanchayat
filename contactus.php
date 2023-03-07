@@ -69,7 +69,6 @@
     <div class="other_links mt-40 mb-5">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-7">
                     <h5>Some Other</h5>
                     <h3>Navigation</h3>
@@ -146,87 +145,17 @@
                             </a>
                         </li>
                     </ul>
-
                 </div>
-
                 <div class="col-md-5">
-                    <h5>Our</h5>
-                    <h3>Success Stories</h3>
-
-                    <div id="myCarousel1" class="carousel slide" data-ride="carousel">
-
-
-                        <!-- Wrapper for carousel items -->
-                        <div class="carousel-inner">
-                            <div class="item carousel-item active">
-                                <div class="img-box"><img
-                                        src="./Uttar Pradesh National Health Mission_files/ASHAUnderCCSP.png" alt="">
-                                </div>
-                                <p class="testimonial">उत्तर प्रदेश में बाल स्वास्थ्य एवं पोषण की जो स्थिति है उसे
-                                    सुधारने के लिये यह जरूरी है कि सम्बन्धित सेवाओं में जन समुदाय की भागीदारी बढ़ायी
-                                    जाये और विभिन्न विभागों जैसे स्वास्थ्य विभाग, आई.सी.डी.एस., पंचायतीराज संस्थाओं
-                                    और ग्राम्य विकास विभाग के प्रयासों को एकीकृत कर साझा प्रयास किया जाये। यह इस कारण भी
-                                    एक चुनौती है क्योंकि बाल अधिकारों की पूर्ति हमारा दायित्व है। अच्छा स्वास्थ्य और
-                                    पोषण राज्य में जन्मे हर बच्चे का अधिकार है।</p>
-                                <p class="overview">&gt;&gt; JOB AIDS Tools For ASHA Under CCSP &lt;&lt;</p>
-                            </div>
-
-                            <div class="item carousel-item">
-                                <div class="img-box"><img
-                                        src="./Uttar Pradesh National Health Mission_files/asha2009.png" alt=""></div>
-                                <p class="testimonial"> राष्ट्रीय ग्रामीण स्वास्थ्य मिशन के अन्तर्गत, प्रदेश में 23
-                                    अगस्त 2005 को आशा योजना का शुभारम्भ किया गया था। राष्ट्रीय ग्रामीण स्वास्थ्य मिशन
-                                    में स्वास्थ्य कार्यक्रमों के सामुदायकीकरण के लिये आशा की महत्वपूर्ण भूमिका है।
-                                    प्रदेश में आशा योजना लागू किये जाने के उपलक्ष्य में प्रत्येक वर्ष 23 अगस्त को आशा
-                                    दिवस के रूप में मनाया जाता है। आशा दिवस/सम्मेलन का आयोजन के उद्देश्य ग्रामीण
-                                    स्वास्थ्य मिशन का आधार कही जाने वाली आशाओं को उनके द्वारा
-                                    समुदाय में किये गये सराहयनीय प्रयासों के लिये उत्सिहत करना, मनोबल बढ़ाना, एवं
-                                    सम्मानित करना।</p>
-                                <p class="overview">&gt;&gt; आशा सम्मेलन 2009-2010 &lt;&lt;</p>
-                            </div>
-
-                            <div class="item carousel-item">
-                                <div class="img-box"><img
-                                        src="./Uttar Pradesh National Health Mission_files/sasbahu.png" alt=""></div>
-                                <p class="testimonial">राष्ट्रीय ग्रामीण स्वास्थ्य मिशन के अन्तर्गत, प्रदेश में 23 अगस्त
-                                    2005 को आशा योजना का शुभारम्भ किया गया था। राष्ट्रीय ग्रामीण स्वास्थ्य मिशन में
-                                    स्वास्थ्य कार्यक्रमों के सामुदायकीकरण के लिये आशा की महत्वपूर्ण भूमिका है।
-                                    प्रदेश में आशा योजना लागू किये जाने के उपलक्ष्य में प्रत्येक वर्ष 23 अगस्त को आशा
-                                    दिवस के रूप में मनाया जाता है। आशा दिवस/सम्मेलन का आयोजन के उद्देश्य ग्रामीण
-                                    स्वास्थ्य मिशन का आधार कही जाने वाली आशाओं को उनके द्वारा
-                                    समुदाय में किये गये सराहयनीय प्रयासों के लिये उत्सिहत करना, मनोबल बढ़ाना, एवं
-                                    सम्मानित करना।</p>
-                                <p class="overview">&gt;&gt; आशा सम्मेलन 2009-2010 &lt;&lt;</p>
-                            </div>
-
-                        </div>
-                        <!-- Carousel controls -->
-                        <a class="carousel-control left carousel-control-prev"
-                            href="http://schauhan.in/upnrhm/#myCarousel1" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a class="carousel-control right carousel-control-next"
-                            href="http://schauhan.in/upnrhm/#myCarousel1" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-
-
-
-
+                    <div class="widget">
+                        <h5 class="widgetheading">Find Us</h5>
+                        <iframe src="./Uttar Pradesh National Health Mission_files/embed.html" width="100%"
+                            height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                 </div>
-
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="widget">
-            <h5 class="widgetheading">Find Us</h5>
-            <iframe src="./Uttar Pradesh National Health Mission_files/embed.html" width="100%"
-                height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-        </div>
-    </div>
-    
-    <?php include('./includes/footer.php') ?>
+</div>
+<?php include('./includes/footer.php') ?>
 </body>
 </html>

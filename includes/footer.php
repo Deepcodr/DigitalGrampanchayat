@@ -9,13 +9,13 @@
                     <div class="widget">
                         <h5 class="widgetheading">Stay on Social Media</h5>
                         <ul class="link-list">
-                            <li><a href="http://schauhan.in/upnrhm/#."><i class="fa fa-facebook icred"></i> Facebook</a>
+                            <li><a href="https://facebook.com"><i class="fa fa-facebook icred"></i> Facebook</a>
                             </li>
-                            <li><a href="http://schauhan.in/upnrhm/#."><i class="fa fa-twitter icred"></i> Twitter</a>
+                            <li><a href="https://twitter.com"><i class="fa fa-twitter icred"></i> Twitter</a>
                             </li>
-                            <li><a href="http://schauhan.in/upnrhm/#."><i class="fa fa-linkedin icred"></i> LinkedIn</a>
+                            <li><a href="https://linkedin.com"><i class="fa fa-linkedin icred"></i> LinkedIn</a>
                             </li>
-                            <li><a href="http://schauhan.in/upnrhm/#."><i class="fa fa-youtube icred"></i> Youtube</a>
+                            <li><a href="https://youtube.com"><i class="fa fa-youtube icred"></i> Youtube</a>
                             </li>
                         </ul>
                     </div>
@@ -25,14 +25,14 @@
                     <div class="widget">
                         <h5 class="widgetheading">Quick Links</h5>
                         <ul class="link-list">
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-chevron-right icred"></i>
+                            <li><a href="http://localhost/DigitalGrampanchayat/login.php"><i class="fa fa-chevron-right icred"></i>
                                     Login</a></li>
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-chevron-right icred"></i>
-                                    Organochart</a></li>
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-chevron-right icred"></i> Health
-                                    Forum</a></li>
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-chevron-right icred"></i>
-                                    Trainings Update</a></li>
+                            <li><a href="http://localhost/DigitalGrampanchayat/admindashboard.php"><i class="fa fa-chevron-right icred"></i>
+                                    Admin Dashboard</a></li>
+                            <li><a href="http://localhost/DigitalGrampanchayat/dashboard.php"><i class="fa fa-chevron-right icred"></i>
+                                    User Dashboard</a></li>
+                            <li><a href="http://localhost/DigitalGrampanchayat/services.php"><i class="fa fa-chevron-right icred"></i>
+                                    Services</a></li>
 
                         </ul>
                     </div>
@@ -42,7 +42,7 @@
                     <div class="widget">
                         <h5 class="widgetheading">Address</h5>
                         <ul class="link-list">
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-map-marker icred"></i> Kodoli , Tal-panhala, Kolhapur, Maharashtra , India - 416113</a></li>
+                            <li><a href="http://localhost/DigitalGrampanchayat/contactus.php"><i class="fa fa-map-marker icred"></i> Kodoli , Tal-panhala, Kolhapur, Maharashtra , India - 416113</a></li>
 
                         </ul>
                     </div>
@@ -52,13 +52,13 @@
                     <div class="widget">
                         <h5 class="widgetheading">Contact Us</h5>
                         <ul class="link-list">
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-phone icred"></i> 0522-2237498</a>
+                            <li><a href="http://localhost/DigitalGrampanchayat/contactus.php"><i class="fa fa-phone icred"></i> 0522-2237498</a>
                             </li>
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-envelope icred"></i>
+                            <li><a href="http://localhost/DigitalGrampanchayat/contactus.php"><i class="fa fa-envelope icred"></i>
                                     abcd@gov.in</a></li>
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-envelope icred"></i>
+                            <li><a href="http://localhost/DigitalGrampanchayat/contactus.php"><i class="fa fa-envelope icred"></i>
                             abcd@gov.in</a></li>
-                            <li><a href="http://schauhan.in/upnrhm/#"><i class="fa fa-envelope icred"></i>
+                            <li><a href="http://localhost/DigitalGrampanchayat/contactus.php"><i class="fa fa-envelope icred"></i>
                             abcd@gov.in</a></li>
                         </ul>
                         <div class="clear">

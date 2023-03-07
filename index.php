@@ -63,28 +63,32 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="./Uttar Pradesh National Health Mission_files/3.jpg"
+                    <img src="./files/img/main_6.jpg"
                         alt="Digital Grampanchayat" width="100%">
                 </div>
                 <div class="carousel-item">
-                    <img src="./Uttar Pradesh National Health Mission_files/2.jpg"
+                    <img src="./files/img/main_2.jpg"
                         alt="Digital Grampanchayat" width="100%">
                 </div>
                 <div class="carousel-item">
-                    <img src="./Uttar Pradesh National Health Mission_files/1.jpg"
+                    <img src="./files/img/main_3.jpg"
                         alt="Digital Grampanchayat" width="100%">
                 </div>
                 <div class="carousel-item">
-                    <img src="./Uttar Pradesh National Health Mission_files/4.jpg"
+                    <img src="./files/img/main_4.jpg"
+                        alt="Digital Grampanchayat" width="100%">
+                </div>
+                <div class="carousel-item">
+                    <img src="./files/img/main_5.jpg"
                         alt="Digital Grampanchayat" width="100%">
                 </div>
             </div>
 
             <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="http://schauhan.in/upnrhm/#demo" data-slide="prev">
+            <a class="carousel-control-prev" href="http://localhost/DigitalGrampanchayat/#demo" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </a>
-            <a class="carousel-control-next" href="http://schauhan.in/upnrhm/#demo" data-slide="next">
+            <a class="carousel-control-next" href="http://localhost/DigitalGrampanchayat/#demo" data-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </a>
         </div>

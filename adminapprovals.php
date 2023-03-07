@@ -82,7 +82,7 @@ else
         >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Admin dashboard</span>
         </a>
-        <a href="./adminapplications.php" class="list-group-item list-group-item-action py-2 ripple active">
+        <a href="./adminapplications.php" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>Application Requests</span>
         </a>
         <a href="./adminqueries.php" class="list-group-item list-group-item-action py-2 ripple"
@@ -91,39 +91,39 @@ else
         <a href="./admincertificates.php" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-chart-line fa-fw me-3"></i><span>View Certificates</span></a
         >
-        <a href="./adminapprovals.php" class="list-group-item list-group-item-action py-2 ripple"
+        <a href="./adminapprovals.php" class="list-group-item list-group-item-action py-2 ripple active"
           ><i class="fas fa-chart-line fa-fw me-3"></i><span>Approvals</span></a
         >
       </div>
     </div>
   </nav>
-    <?php
-      if(isset($_SESSION["rejection"]))
-        {
-          if($_SESSION["rejection"]==1)
-          {
-            echo '<div id="successtoast" class="alert alert-success container mt-4" role="alert">
-            <h4 class="alert-heading">Rejection Successful!</h4>
-            </div>
-            <script>
-                setTimeout(hidetoast,5000);
-            </script>';
-          }
-          elseif($_SESSION["rejection"]==0)
-          {
-            echo '<div id="dangertoast" class="alert alert-danger container mt-4" role="alert">
-            <h4 class="alert-heading">Rejection Unsuccessful . Please Try Again!</h4>
-            </div>
-            <script>
-                setTimeout(hidetoast,5000);
-            </script>';
-          }
-          $_SESSION["rejection"]=-1;
-        }
-    ?>
-  <div id="applications-content" class="container d-flex flex-row flex-wrap">
+  <?php
+  if(isset($_SESSION["applicationsapply"]))
+  {
+    if($_SESSION["applicationsapply"]==1)
+    {
+      echo '<div id="successtoast" class="alert alert-success container m-2 mt-4" role="alert">
+      <h4 class="alert-heading">You Have Applied Successfully!</h4>
+      </div>
+      <script>
+          setTimeout(hidetoast,5000);
+      </script>';
+    }
+    elseif($_SESSION["applicationsapply"]==0)
+    {
+      echo '<div id="dangertoast" class="alert alert-danger container m-2 mt-4" role="alert">
+      <h4 class="alert-heading">Application Failed Try Again Later</h4>
+      </div>
+      <script>
+          setTimeout(hidetoast,5000);
+      </script>';
+    }
+    $_SESSION["applicationsapply"]=-1;
+  }
+  ?>
+  <div id="approvals-content" class="container d-flex flex-wrap">
   </div>
 </div>
 </body>
-<script src="./js/applications.js"></script>
+<script src="./js/approvals.js"></script>
 </html>
