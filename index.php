@@ -63,7 +63,7 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="./files/img/main_6.jpg"
+                    <img src="./files/img/main_1.jpg"
                         alt="Digital Grampanchayat" width="100%">
                 </div>
                 <div class="carousel-item">
@@ -147,114 +147,7 @@
                     <div class="event_container">
                         <h2><i class="fa fa-angle-right ic" aria-hidden="true"></i> Latest News &amp; Event<br></h2>
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="item carousel-item active">
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    class="img-fluid" width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item carousel-item">
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item carousel-item">
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="row">
-                                            <div class="col-md-2 col-2"><img
-                                                    src="./Uttar Pradesh National Health Mission_files/1.png"
-                                                    width="100%"></div>
-                                            <div class="col-md-10 col-10">
-                                                <p><a href="http://schauhan.in/upnrhm/#">Release of Offer Letter for CHO
-                                                        January 2020 Session (April 20-Sep20)</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="carousel-inner" id="notices-content">
 
                             </div>
                             <!-- Carousel controls -->
@@ -272,24 +165,57 @@
 
                 <div class="col-md-6">
                     <div class="latest_videos">
-                        <h2><i class="fa fa-angle-right ic" aria-hidden="true"></i> Related Links</h2>
-                        <div class="row">
-                            <div class="col-md-3 col-6"><img
-                                    src="./Uttar Pradesh National Health Mission_files/1(1).png" width="100%"></div>
-                            <div class="col-md-3 col-6"><img src="./Uttar Pradesh National Health Mission_files/2.png"
-                                    width="100%"></div>
-                            <div class="col-md-3 col-6"><img src="./Uttar Pradesh National Health Mission_files/3.png"
-                                    width="100%"></div>
-                            <div class="col-md-3 col-6"><img src="./Uttar Pradesh National Health Mission_files/4.png"
-                                    width="100%"></div>
-                            <div class="col-md-3 col-6"><img src="./Uttar Pradesh National Health Mission_files/5.png"
-                                    width="100%"></div>
-                            <div class="col-md-3 col-6"><img src="./Uttar Pradesh National Health Mission_files/6.png"
-                                    width="100%"></div>
-                            <div class="col-md-3 col-6"><img src="./Uttar Pradesh National Health Mission_files/7.png"
-                                    width="100%"></div>
-                            <div class="col-md-3 col-6"><img src="./Uttar Pradesh National Health Mission_files/8.png"
-                                    width="100%"></div>
+                        <div class="row m-2">
+                            <div class="col-md-3 col-6 mr-2">
+                            <div class="card bg-warning" style="width : fit-content">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Applications</h5>
+                                        <p class="card-text">100</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 ml-4 mr-2">
+                                <div class="card bg-warning" style="width : fit-content">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Applications</h5>
+                                        <p class="card-text">100</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 ml-4">
+                            <div class="card bg-warning" style="width : fit-content">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Applications</h5>
+                                        <p class="card-text">100</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                        <div class="col-md-3 col-6 mr-2">
+                            <div class="card bg-warning" style="width : fit-content">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Applications</h5>
+                                        <p class="card-text">100</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 ml-4 mr-2">
+                            <div class="card bg-warning" style="width : fit-content">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Applications</h5>
+                                        <p class="card-text">100</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 ml-4">
+                            <div class="card bg-warning" style="width : fit-content">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Applications</h5>
+                                        <p class="card-text">100</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -322,5 +248,5 @@
 
 
 </body>
-
+<script src="./js/notices.js"></script>
 </html>

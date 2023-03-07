@@ -76,57 +76,40 @@ else
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a
-          href="./admindashboard.php"
-          class="list-group-item list-group-item-action py-2 ripple"
+          href="./dashboard.php"
+          class="list-group-item list-group-item-action py-2 ripple active"
           aria-current="true" 
         >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Admin dashboard</span>
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>My dashboard</span>
         </a>
         <a href="./adminapplications.php" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>Application Requests</span>
         </a>
         <a href="./adminqueries.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-lock fa-fw me-3"></i><span>View Queries</span></a
+          ><i class="fas fa-lock fa-fw me-3"></i><span>Create Queries</span></a
         >
         <a href="./admincertificates.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>View Certificates</span></a
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Generate Certificate</span></a
         >
-        <a href="./adminapprovals.php" class="list-group-item list-group-item-action py-2 ripple active"
+        <a href="./adminapprovals.php" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-chart-line fa-fw me-3"></i><span>Approvals</span></a
-        >
-        <a href="./adminnotices.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Create Notice</span></a
         >
       </div>
     </div>
-  </nav>
-  <?php
-  if(isset($_SESSION["applicationsapply"]))
-  {
-    if($_SESSION["applicationsapply"]==1)
-    {
-      echo '<div id="successtoast" class="alert alert-success container m-2 mt-4" role="alert">
-      <h4 class="alert-heading">You Have Applied Successfully!</h4>
+    </nav>
+  <div id="applications-content" class="container d-flex flex-row flex-wrap">
+    <form class="p-2 m-2" action="./utilityscripts/createnotice.php" method="POST">
+      <div class="mb-3">
+          <label for="notice" class="form-label">Notice Content</label>
+          <input type="text" class="form-control" id="notice" name="noticecontent">
       </div>
-      <script>
-          setTimeout(hidetoast,5000);
-      </script>';
-    }
-    elseif($_SESSION["applicationsapply"]==0)
-    {
-      echo '<div id="dangertoast" class="alert alert-danger container m-2 mt-4" role="alert">
-      <h4 class="alert-heading">Application Failed Try Again Later</h4>
+      <div class="mb-3">
+          <label for="noticelink" class="form-label">Notice Link</label>
+          <input type="text" class="form-control" id="noticelink" name="noticelink">
       </div>
-      <script>
-          setTimeout(hidetoast,5000);
-      </script>';
-    }
-    $_SESSION["applicationsapply"]=-1;
-  }
-  ?>
-  <div id="approvals-content" class="container d-flex flex-wrap">
-  </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
 </div>
 </body>
-<script src="./js/approvals.js"></script>
 </html>

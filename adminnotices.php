@@ -71,6 +71,52 @@ else
     >
     <i class="fas fa-bars"></i>
 </button>
+<?php
+        if(isset($_SESSION["noticegeneration"]))
+        {
+          if($_SESSION["noticegeneration"]==1)
+          {
+            echo '<div id="successtoast" class="alert alert-success container mt-4" role="alert">
+            <h4 class="alert-heading">Notice Created Successful!</h4>
+            </div>
+            <script>
+                setTimeout(hidetoast,5000);
+            </script>';
+          }
+          elseif($_SESSION["noticegeneration"]==0)
+          {
+            echo '<div id="dangertoast" class="alert alert-danger container mt-4" role="alert">
+            <h4 class="alert-heading">Notice Creation Failed . Please Try Again!</h4>
+            </div>
+            <script>
+                setTimeout(hidetoast,5000);
+            </script>';
+          }
+          $_SESSION["noticegeneration"]=-1;
+        }
+        if(isset($_SESSION["noticedeletion"]))
+        {
+          if($_SESSION["noticedeletion"]==1)
+          {
+            echo '<div id="successtoast" class="alert alert-success container mt-4" role="alert">
+            <h4 class="alert-heading">Notice Deleted Successfully!</h4>
+            </div>
+            <script>
+                setTimeout(hidetoast,5000);
+            </script>';
+          }
+          elseif($_SESSION["noticedeletion"]==0)
+          {
+            echo '<div id="dangertoast" class="alert alert-danger container mt-4" role="alert">
+            <h4 class="alert-heading">Notice Deletion Failed . Please Try Again!</h4>
+            </div>
+            <script>
+                setTimeout(hidetoast,5000);
+            </script>';
+          }
+          $_SESSION["noticedeletion"]=-1;
+        }
+    ?>
 <div class="container-fluid d-flex flex-row">
 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
@@ -91,42 +137,18 @@ else
         <a href="./admincertificates.php" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-chart-line fa-fw me-3"></i><span>View Certificates</span></a
         >
-        <a href="./adminapprovals.php" class="list-group-item list-group-item-action py-2 ripple active"
+        <a href="./adminnoticegenerations.php" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-chart-line fa-fw me-3"></i><span>Approvals</span></a
         >
-        <a href="./adminnotices.php" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Create Notice</span></a
+        <a href="./adminnoticegenerations.php" class="list-group-item list-group-item-action py-2 ripple active"
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Create/View Notice</span></a
         >
       </div>
     </div>
   </nav>
-  <?php
-  if(isset($_SESSION["applicationsapply"]))
-  {
-    if($_SESSION["applicationsapply"]==1)
-    {
-      echo '<div id="successtoast" class="alert alert-success container m-2 mt-4" role="alert">
-      <h4 class="alert-heading">You Have Applied Successfully!</h4>
-      </div>
-      <script>
-          setTimeout(hidetoast,5000);
-      </script>';
-    }
-    elseif($_SESSION["applicationsapply"]==0)
-    {
-      echo '<div id="dangertoast" class="alert alert-danger container m-2 mt-4" role="alert">
-      <h4 class="alert-heading">Application Failed Try Again Later</h4>
-      </div>
-      <script>
-          setTimeout(hidetoast,5000);
-      </script>';
-    }
-    $_SESSION["applicationsapply"]=-1;
-  }
-  ?>
-  <div id="approvals-content" class="container d-flex flex-wrap">
+  <div id="notices-content" class="container d-flex flex-row">
   </div>
 </div>
 </body>
-<script src="./js/approvals.js"></script>
+<script src="./js/notices.js"></script>
 </html>

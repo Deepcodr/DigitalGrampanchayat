@@ -94,6 +94,9 @@ else
         <a href="./adminapprovals.php" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-chart-line fa-fw me-3"></i><span>Approvals</span></a
         >
+        <a href="./adminnotices.php" class="list-group-item list-group-item-action py-2 ripple"
+          ><i class="fas fa-chart-line fa-fw me-3"></i><span>Create Notice</span></a
+        >
       </div>
     </div>
   </nav>
